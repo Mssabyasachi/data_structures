@@ -92,24 +92,38 @@ class LinkedList:
     def insert_after_value(self, data_after, data_to_insert):
         # Search for first occurance of data_after value in linked list
         # Now insert data_to_insert after data_after node
+        if self.head is None:
+            return
+
+        if self.head.data == data_after:
+            self.head.next = Node(data_to_insert,self.head.next)
+            return
             
         itr = self.head
-        print(type(itr.data))
-        while itr.data is not data_after:
-            # print(itr.data)
+        while itr:
+            if itr.data == data_after:
+                itr.next = Node(data_to_insert,itr.next)
+                break
             itr = itr.next
 
-        # print(itr.data)
-        node = Node(data_to_insert, itr.next)
-        itr.next = node
-                
-# check version update
 
 
+    def remove_by_value(self, data):
+        if self.head is None:
+            return
 
-def remove_by_value(self, data):
-    pass
-    # Remove first node that contains data
+        if self.head.data == data:
+            self.head = self.head.next
+            return
+
+        itr = self.head
+        while itr.next:
+            if itr.next.data == data:
+                itr.next = itr.next.next
+                break
+            itr = itr.next
+            
+
 
 
 if __name__ == '__main__':
@@ -117,7 +131,7 @@ if __name__ == '__main__':
     # ll.insert_at_end(5)
     # ll.insert_at_end(78)
     # ll.insert_at_end(89)
-    ll.insert_values(["banana", "mango", "grapes", "orange"])
+    ll.insert_values(["banana", "mango", "figs", "grapes", "orange"])
     ll.print()
     # ll.remove_at(2)
     # ll.print()
@@ -125,7 +139,9 @@ if __name__ == '__main__':
     # ll.print()
     # ll.insert_at(2, 'jackfruit')
     ll.print()
-    ll.insert_after_value("figs","orange")
+    ll.insert_after_value("figs","lichi")
+    ll.print()
+    ll.remove_by_value("figs")
     ll.print()
     
     
